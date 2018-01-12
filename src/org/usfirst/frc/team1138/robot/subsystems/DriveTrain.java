@@ -37,7 +37,7 @@ public class DriveTrain extends Subsystem {
 		rightRearMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 
 		//rightFrontMotor.setSafetyEnabled(false);
-		rightFrontMotor.setVoltageRampRate(KRamp);
+		//rightFrontMotor.setVoltageRampRate(KRamp); - Taken out, put it back in
 
 		rightTopMotor.set(ControlMode.Follower, KRightMaster); // Set the top motor as a slave
 		rightTopMotor.setSensorPhase(true);	//invert the top motor relative to the master
@@ -50,7 +50,7 @@ public class DriveTrain extends Subsystem {
 		leftFrontMotor = new TalonSRX(KLeftMaster);
 
 		//leftFrontMotor.setSafetyEnabled(false);
-		leftFrontMotor.setVoltageRampRate(KRamp);
+		//leftFrontMotor.setVoltageRampRate(KRamp); - Took out rampint, put it back in
 		leftFrontMotor.setInverted(true);
 		leftFrontMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 
