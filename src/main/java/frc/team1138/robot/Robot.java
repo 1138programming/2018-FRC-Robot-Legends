@@ -5,9 +5,9 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package main.java.frc.team1138.robot;
+package frc.team1138.robot;
 
-import main.java.frc.team1138.robot.commands.ExampleCommand;
+import frc.team1138.robot.commands.ExampleCommand;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;

@@ -1,15 +1,15 @@
-package main.java.frc.team1138.robot;
+package frc.team1138.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-//import main.java.frc.team1138.robot.commands.ExampleCommand;
-import main.java.frc.team1138.robot.commands.ShiftBase;
-import main.java.frc.team1138.robot.commands.KickBall;
-import main.java.frc.team1138.robot.commands.CollectBall;
-import main.java.frc.team1138.robot.commands.StopCollect;
-import main.java.frc.team1138.robot.commands.FlywheelForward;
-
+//import frc.team1138.robot.commands.ExampleCommand;
+import frc.team1138.robot.commands.ShiftBase;
+import frc.team1138.robot.commands.KickBall;
+import frc.team1138.robot.commands.CollectBall;
+import frc.team1138.robot.commands.StopCollect;
+import frc.team1138.robot.commands.FlywheelForward;
+import frc.team1138.robot.commands.FlywheelReverse;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -22,8 +22,8 @@ public class OI {
 	public JoystickButton shiftButton, reverseDriveButton;
 	
 	// XBox Button definitions   The ones that are commented out, we aren't using currently
-	public JoystickButton buttonA, buttonB, buttonX, buttonY;
-	// public JoystickButton buttonLB     // Left Bumper
+	public JoystickButton buttonA, buttonB, buttonX, buttonY, buttonLB;
+	//public JoystickButton buttonLB     // Left Bumper
 	// public JoystickButton buttonRB     // Right Bumper
 	// public JoystickButton buttonSelect // Select Button
 	// public JoystickButton buttonStart  // Start Button
@@ -44,7 +44,7 @@ public class OI {
 		buttonB	= new JoystickButton(xBoxController, 2);	//Collect Ball
 		buttonX = new JoystickButton(xBoxController, 3);	//Panic Kick
 		buttonY = new JoystickButton(xBoxController, 4);	//Shoot High Goal
-		//	buttonLB = new JoystickButton(xBoxController, 5);		//left bumper
+		buttonLB = new JoystickButton(xBoxController, 5);  //Reverse Flywheel
 		//	buttonRB) = new JoystickButton(xBoxController, 6);		//right bumper
 		//	buttonSelect = new JoystickButton(xBoxController, 7);	//Select button
 		//	buttonStart = new JoystickButton(xBoxController, 8);	//Start button
@@ -54,7 +54,7 @@ public class OI {
 		buttonB.whenPressed(new CollectBall());
 		buttonA.whenPressed(new StopCollect());
 		buttonY.whenPressed(new FlywheelForward());
-//		buttonB.whenReleased(new DrivePosition());
+		buttonLB.whenReleased(new FlywheelReverse());
 	}
 	
 	public double getRightController(){			//Right controller is right side drive

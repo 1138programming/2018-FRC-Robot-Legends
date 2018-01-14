@@ -1,9 +1,10 @@
-package main.java.frc.team1138.robot.commands;
+package frc.team1138.robot.commands;
 
-import main.java.frc.team1138.robot.CommandBase;
+import frc.team1138.robot.CommandBase;
 
 public class CollectBall extends CommandBase {
 	public CollectBall() {
+		requires(shooter);
 	}
 	// Called just before this Command runs the first time
 	public void initialize()
@@ -14,7 +15,7 @@ public class CollectBall extends CommandBase {
 	// Called repeatedly when this Command is scheduled to run
 	public void execute()
 	{
-
+		CommandBase.shooter.runRollerReverse();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

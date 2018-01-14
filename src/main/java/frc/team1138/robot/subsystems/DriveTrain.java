@@ -1,6 +1,6 @@
-package main.java.frc.team1138.robot.subsystems;
+package frc.team1138.robot.subsystems;
 
-import main.java.frc.team1138.robot.commands.DriveWithJoysticks;
+import frc.team1138.robot.commands.DriveWithJoysticks;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -51,7 +51,13 @@ public class DriveTrain extends Subsystem {
 
 		//leftFrontMotor.setSafetyEnabled(false);
 		//leftFrontMotor.setVoltageRampRate(KRamp); - Removed
+		rightTopMotor.setInverted(true); 
+		rightRearMotor.setInverted(true);
+		
 		leftFrontMotor.setInverted(true);
+		leftRearMotor.setInverted(true);
+		leftTopMotor.setInverted(true);
+		
 		leftFrontMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 
 		shiftSolenoid = new DoubleSolenoid(0, 1);

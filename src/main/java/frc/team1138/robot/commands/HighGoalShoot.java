@@ -1,7 +1,7 @@
-package main.java.frc.team1138.robot.commands;
+package frc.team1138.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import main.java.frc.team1138.robot.CommandBase;
+import frc.team1138.robot.CommandBase;
 
 public class HighGoalShoot extends CommandGroup {
 	public HighGoalShoot() {

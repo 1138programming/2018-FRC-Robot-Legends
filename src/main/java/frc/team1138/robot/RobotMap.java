@@ -1,4 +1,4 @@
-package main.java.frc.team1138.robot;
+package frc.team1138.robot;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into

@@ -1,4 +1,4 @@
-package main.java.frc.team1138.robot.subsystems;
+package frc.team1138.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -15,7 +15,7 @@ public class Shooter extends Subsystem {
 	private DoubleSolenoid shooterSolenoid;
 	
 	final double KFlywheelForwardSpeed = 1;
-	final double KFlywheelReverseSpeed = 0.3;
+	final double KFlywheelReverseSpeed = -0.3;
 	final double	KRollerReverseSpeed = -1;
 	final double KRollerForwardSpeed = 1;;
 
@@ -25,8 +25,10 @@ public class Shooter extends Subsystem {
 		shooterSolenoid = new DoubleSolenoid(2, 3);
 		//leftFlywheelMotor.setSafetyEnabled(false);
 		leftFlywheelMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		
 		leftFlywheelMotor.setInverted(true);
-
+		rightFlywheelMotor.setInverted(true);
+		
 		rightFlywheelMotor.set(ControlMode.Follower, 8); //talon number of the left flywheel motor
 
 		rollerMotor = new TalonSRX(10);

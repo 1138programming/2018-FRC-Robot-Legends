@@ -1,4 +1,4 @@
-package main.java.frc.team1138.robot.subsystems;
+package frc.team1138.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Compressor;

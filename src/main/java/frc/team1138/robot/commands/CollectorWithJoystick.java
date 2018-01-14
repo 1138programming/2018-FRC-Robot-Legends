@@ -1,6 +1,6 @@
-package main.java.frc.team1138.robot.commands;
+package frc.team1138.robot.commands;
 
-import main.java.frc.team1138.robot.CommandBase;
+import frc.team1138.robot.CommandBase;
 
 public class CollectorWithJoystick extends CommandBase {
 	public CollectorWithJoystick() {

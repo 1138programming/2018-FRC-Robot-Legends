@@ -1,7 +1,7 @@
-package main.java.frc.team1138.robot.subsystems;
+package frc.team1138.robot.subsystems;
 
-import main.java.frc.team1138.robot.RobotMap;
-import main.java.frc.team1138.robot.commands.PivotWithJoystick;
+import frc.team1138.robot.RobotMap;
+import frc.team1138.robot.commands.PivotWithJoystick;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DigitalInput;

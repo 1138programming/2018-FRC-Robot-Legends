@@ -1,9 +1,9 @@
-package main.java.frc.team1138.robot.subsystems;
+package frc.team1138.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import main.java.frc.team1138.robot.RobotMap;
-import main.java.frc.team1138.robot.commands.CollectorWithJoystick;
+import frc.team1138.robot.RobotMap;
+import frc.team1138.robot.commands.CollectorWithJoystick;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Subsystem;
