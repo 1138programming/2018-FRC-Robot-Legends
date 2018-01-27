@@ -15,49 +15,55 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
  * A single moter to run the roller.  There are also 2 limit switches that
  * signal the upper and lower limit of collector arm travel.
  */
-public class Collector extends Subsystem {
+public class Collector extends Subsystem
+{
 	private TalonSRX rightCollectorMotor, leftCollectorMotor;
 	private DigitalInput collectorLowerLimit, collectorUpperLimit;
-	//TODO add PID to collector motors
-	//TODO figure out encoder values for the drive position and the collect position
-	final int KCollectorMaster = 11;	//Talon number for the left collector motor
-	final double KCollectorSpeed = 0.33; //We don't run the collector very fast
+	// TODO add PID to collector motors
+	// TODO figure out encoder values for the drive position and the collect
+	// position
+	final int KCollectorMaster = 11; // Talon number for the left collector motor
+	final double KCollectorSpeed = 0.33; // We don't run the collector very fast
 	final int KCollectorDrivePosition = 1000;
-	final int KCollectorCollectPosition = 500;	//
-	
-	public Collector() {
+	final int KCollectorCollectPosition = 500; //
+
+	public Collector()
+	{
 		rightCollectorMotor = new TalonSRX(11);
 		leftCollectorMotor = new TalonSRX(9);
 		rightCollectorMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		collectorUpperLimit = new DigitalInput(5);
 		collectorLowerLimit = new DigitalInput(2);
 	}
-	
-	public void initDefaultCommand() {
+
+	public void initDefaultCommand()
+	{
 		setDefaultCommand(new CollectorWithJoystick());
 	}
-	
+
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	//TODO need to determine encoder values for each of these positions
+	// TODO need to determine encoder values for each of these positions
 
-	//This routine is for testing the collector.  It will move the collector up or down
-	//based on the right XBox controller until it reaches the limit switch.
-	//We need to use this to get the encoder values for the various positions we want.
-	//TODO can we light up an indicator when the robot is in a particular range?
-	
+	// This routine is for testing the collector. It will move the collector up or
+	// down
+	// based on the right XBox controller until it reaches the limit switch.
+	// We need to use this to get the encoder values for the various positions we
+	// want.
+	// TODO can we light up an indicator when the robot is in a particular range?
+
 	public void collectorRunToLimitSwitch(double direction)
 	{
 		SmartDashboard.putNumber("Left Collector Encoder", collectorLeftEncoderPosition());
 		SmartDashboard.putNumber("Left Collector Encoder", collectorRightEncoderPosition());
 
-		if (direction >= RobotMap.KDeadZoneLimit && collectorIsAtUpperLimit() == false)//moving up
+		if (direction >= RobotMap.KDeadZoneLimit && collectorIsAtUpperLimit() == false)// moving up
 		{
 			leftCollectorMotor.set(ControlMode.PercentOutput, KCollectorSpeed);
 			rightCollectorMotor.set(ControlMode.PercentOutput, -KCollectorSpeed);
 
 		}
-		else if (direction <= -RobotMap.KDeadZoneLimit && collectorIsAtLowerLimit() == false)//moving down
+		else if (direction <= -RobotMap.KDeadZoneLimit && collectorIsAtLowerLimit() == false)// moving down
 		{
 			leftCollectorMotor.set(ControlMode.PercentOutput, -KCollectorSpeed);
 			rightCollectorMotor.set(ControlMode.PercentOutput, KCollectorSpeed);
@@ -67,7 +73,7 @@ public class Collector extends Subsystem {
 			leftCollectorMotor.set(ControlMode.PercentOutput, 0);
 			rightCollectorMotor.set(ControlMode.PercentOutput, 0);
 		}
-		if(collectorIsAtUpperLimit())
+		if (collectorIsAtUpperLimit())
 		{
 			leftCollectorMotor.getSensorCollection().setQuadraturePosition(0, 10);
 		}
@@ -76,44 +82,45 @@ public class Collector extends Subsystem {
 
 	public void collectorCollectPosition()
 	{
-		if (leftCollectorMotor.getSensorCollection().getQuadraturePosition() > KCollectorCollectPosition )
-			{
-				while(leftCollectorMotor.getSensorCollection().getQuadraturePosition() > KCollectorCollectPosition)
-				{
-					leftCollectorMotor.set(ControlMode.PercentOutput, -KCollectorSpeed);
-				}
-			}
-			else if (leftCollectorMotor.getSensorCollection().getQuadraturePosition() < KCollectorCollectPosition )
-			{
-				while(leftCollectorMotor.getSensorCollection().getQuadraturePosition() < KCollectorCollectPosition)
-				{
-					leftCollectorMotor.set(ControlMode.PercentOutput, KCollectorSpeed);
-				}
-			}
-	}
-
-	public void collectorDrivePosition()
-	{
-		if (leftCollectorMotor.getSensorCollection().getQuadraturePosition() > KCollectorDrivePosition )
+		if (leftCollectorMotor.getSensorCollection().getQuadraturePosition() > KCollectorCollectPosition)
 		{
-			while(leftCollectorMotor.getSensorCollection().getQuadraturePosition() > KCollectorDrivePosition)
+			while (leftCollectorMotor.getSensorCollection().getQuadraturePosition() > KCollectorCollectPosition)
 			{
 				leftCollectorMotor.set(ControlMode.PercentOutput, -KCollectorSpeed);
 			}
 		}
-		else if (leftCollectorMotor.getSensorCollection().getQuadraturePosition() < KCollectorDrivePosition )
+		else if (leftCollectorMotor.getSensorCollection().getQuadraturePosition() < KCollectorCollectPosition)
 		{
-			while(leftCollectorMotor.getSensorCollection().getQuadraturePosition() < KCollectorDrivePosition)
+			while (leftCollectorMotor.getSensorCollection().getQuadraturePosition() < KCollectorCollectPosition)
+			{
+				leftCollectorMotor.set(ControlMode.PercentOutput, KCollectorSpeed);
+			}
+		}
+	}
+
+	public void collectorDrivePosition()
+	{
+		if (leftCollectorMotor.getSensorCollection().getQuadraturePosition() > KCollectorDrivePosition)
+		{
+			while (leftCollectorMotor.getSensorCollection().getQuadraturePosition() > KCollectorDrivePosition)
+			{
+				leftCollectorMotor.set(ControlMode.PercentOutput, -KCollectorSpeed);
+			}
+		}
+		else if (leftCollectorMotor.getSensorCollection().getQuadraturePosition() < KCollectorDrivePosition)
+		{
+			while (leftCollectorMotor.getSensorCollection().getQuadraturePosition() < KCollectorDrivePosition)
 			{
 				leftCollectorMotor.set(ControlMode.PercentOutput, KCollectorSpeed);
 			}
 		}
 		stopCollector();
 	}
-	//Move the collector up until we hit the limit switch
+
+	// Move the collector up until we hit the limit switch
 	public void collectorHighPosition()
 	{
-		while(!collectorIsAtUpperLimit())
+		while (!collectorIsAtUpperLimit())
 		{
 			leftCollectorMotor.set(ControlMode.PercentOutput, -KCollectorSpeed);
 			SmartDashboard.putNumber("Left Collector Encoder", collectorLeftEncoderPosition());
@@ -121,12 +128,12 @@ public class Collector extends Subsystem {
 		}
 	}
 
-	//Move the collector down until we hit the limit switch.
-	//TODO we need to initialize the encoders (and test their direction) so that
-	//when we start in the arms up position, the encoders reflect that
+	// Move the collector down until we hit the limit switch.
+	// TODO we need to initialize the encoders (and test their direction) so that
+	// when we start in the arms up position, the encoders reflect that
 	public void collectorRaiseBot()
 	{
-		while(!collectorIsAtLowerLimit())
+		while (!collectorIsAtLowerLimit())
 		{
 			leftCollectorMotor.set(ControlMode.PercentOutput, -KCollectorSpeed);
 			SmartDashboard.putNumber("Left Collector Encoder", collectorLeftEncoderPosition());
@@ -134,7 +141,7 @@ public class Collector extends Subsystem {
 		}
 		if (collectorIsAtLowerLimit())
 		{
-			leftCollectorMotor.getSensorCollection().setQuadraturePosition(0, 10);	// reset the encoders
+			leftCollectorMotor.getSensorCollection().setQuadraturePosition(0, 10); // reset the encoders
 			rightCollectorMotor.getSensorCollection().setQuadraturePosition(0, 10);
 		}
 	}

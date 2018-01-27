@@ -2,9 +2,12 @@ package frc.team1138.robot.commands;
 
 import frc.team1138.robot.CommandBase;
 
-public class KickBall extends CommandBase {
-	public KickBall() {
+public class KickBall extends CommandBase
+{
+	public KickBall()
+	{
 	}
+
 	// Called just before this Command runs the first time
 	public void initialize()
 	{

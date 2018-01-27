@@ -2,10 +2,13 @@ package frc.team1138.robot.commands;
 
 import frc.team1138.robot.CommandBase;
 
-public class ShiftBase extends CommandBase {
-	public ShiftBase() {
+public class ShiftBase extends CommandBase
+{
+	public ShiftBase()
+	{
 		requires(CommandBase.driveTrain);
 	}
+
 	// Called just before this Command runs the first time
 	public void initialize()
 	{

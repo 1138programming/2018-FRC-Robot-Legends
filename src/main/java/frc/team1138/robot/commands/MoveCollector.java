@@ -12,18 +12,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *  */
 //TODO verify that the position of the XBox POV gives the values I think it does - I think down is 0
 
-public class MoveCollector extends CommandBase {
-	public MoveCollector() {
+public class MoveCollector extends CommandBase
+{
+	public MoveCollector()
+	{
 		requires(CommandBase.collector);
 	}
+
 	// Called just before this Command runs the first time
-	// If the collector isn't all the way up, raise it until it is.  Set the encoder
+	// If the collector isn't all the way up, raise it until it is. Set the encoder
 	// and then lower the collector to the drive position.
-	//TODO This may have to change before competition because collector won't be in high position
+	// TODO This may have to change before competition because collector won't be in
+	// high position
 	public void initialize()
 	{
-//		CommandBase.collector.collectorHighPosition();
-//		CommandBase.collector.collectorDrivePosition();
+		// CommandBase.collector.collectorHighPosition();
+		// CommandBase.collector.collectorDrivePosition();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -31,20 +35,20 @@ public class MoveCollector extends CommandBase {
 	{
 		int POVPosition = oi.getXBoxPOV();
 
-		//POV value is the angle of POV in degrees or -1 if not pressed
-		if (POVPosition == 0)	//Down POV
+		// POV value is the angle of POV in degrees or -1 if not pressed
+		if (POVPosition == 0) // Down POV
 		{
 			CommandBase.collector.collectorRaiseBot();
 		}
-		else if (POVPosition == 90)	//Right POV
+		else if (POVPosition == 90) // Right POV
 		{
 			CommandBase.collector.collectorDrivePosition();
 		}
-		else if (POVPosition == 180)	//Up POV
+		else if (POVPosition == 180) // Up POV
 		{
 			CommandBase.collector.collectorHighPosition();
 		}
-		else if (POVPosition == 270)	//Left POV
+		else if (POVPosition == 270) // Left POV
 		{
 			CommandBase.collector.collectorCollectPosition();
 		}

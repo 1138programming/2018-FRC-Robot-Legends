@@ -2,9 +2,12 @@ package frc.team1138.robot.commands;
 
 import frc.team1138.robot.CommandBase;
 
-public class ExampleCommand extends CommandBase {
-	public ExampleCommand() {
+public class ExampleCommand extends CommandBase
+{
+	public ExampleCommand()
+	{
 	}
+
 	// Called just before this Command runs the first time
 	public void initialize()
 	{

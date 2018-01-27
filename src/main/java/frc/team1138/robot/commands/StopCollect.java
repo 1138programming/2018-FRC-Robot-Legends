@@ -2,10 +2,13 @@ package frc.team1138.robot.commands;
 
 import frc.team1138.robot.CommandBase;
 
-public class StopCollect extends CommandBase {
-	public StopCollect() {
+public class StopCollect extends CommandBase
+{
+	public StopCollect()
+	{
 		requires(CommandBase.shooter);
 	}
+
 	// Called just before this Command runs the first time
 	public void initialize()
 	{

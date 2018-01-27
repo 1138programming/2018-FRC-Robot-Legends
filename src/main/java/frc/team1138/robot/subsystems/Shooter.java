@@ -8,33 +8,36 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Timer;
 
-public class Shooter extends Subsystem {
+public class Shooter extends Subsystem
+{
 	private TalonSRX leftFlywheelMotor;
 	private TalonSRX rightFlywheelMotor;
 	private TalonSRX rollerMotor;
 	private DoubleSolenoid shooterSolenoid;
-	
+
 	final double KFlywheelForwardSpeed = 1;
 	final double KFlywheelReverseSpeed = -0.3;
-	final double	KRollerReverseSpeed = -1;
+	final double KRollerReverseSpeed = -1;
 	final double KRollerForwardSpeed = 1;;
 
-	public Shooter() {
+	public Shooter()
+	{
 		rightFlywheelMotor = new TalonSRX(7);
 		leftFlywheelMotor = new TalonSRX(8);
 		shooterSolenoid = new DoubleSolenoid(2, 3);
-		//leftFlywheelMotor.setSafetyEnabled(false);
+		// leftFlywheelMotor.setSafetyEnabled(false);
 		leftFlywheelMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-		
+
 		leftFlywheelMotor.setInverted(true);
 		rightFlywheelMotor.setInverted(true);
-		
-		rightFlywheelMotor.set(ControlMode.Follower, 8); //talon number of the left flywheel motor
+
+		rightFlywheelMotor.set(ControlMode.Follower, 8); // talon number of the left flywheel motor
 
 		rollerMotor = new TalonSRX(10);
 	}
-	
-	public void initDefaultCommand() {
+
+	public void initDefaultCommand()
+	{
 	}
 
 	public void panicKick()
@@ -76,5 +79,5 @@ public class Shooter extends Subsystem {
 		leftFlywheelMotor.set(ControlMode.PercentOutput, 0);
 		rollerMotor.set(ControlMode.PercentOutput, 0);
 	}
-	
+
 }

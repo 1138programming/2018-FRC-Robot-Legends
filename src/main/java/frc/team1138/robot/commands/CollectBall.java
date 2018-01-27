@@ -2,10 +2,13 @@ package frc.team1138.robot.commands;
 
 import frc.team1138.robot.CommandBase;
 
-public class CollectBall extends CommandBase {
-	public CollectBall() {
+public class CollectBall extends CommandBase
+{
+	public CollectBall()
+	{
 		requires(shooter);
 	}
+
 	// Called just before this Command runs the first time
 	public void initialize()
 	{

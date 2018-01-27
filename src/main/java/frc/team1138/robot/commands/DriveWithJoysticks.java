@@ -2,12 +2,15 @@ package frc.team1138.robot.commands;
 
 import frc.team1138.robot.CommandBase;
 
-public class DriveWithJoysticks extends CommandBase {
+public class DriveWithJoysticks extends CommandBase
+{
 	static double baseDirection = 1;
 
-	public DriveWithJoysticks() {
+	public DriveWithJoysticks()
+	{
 		requires(CommandBase.driveTrain);
 	}
+
 	// Called just before this Command runs the first time
 	public void initialize()
 	{
@@ -17,10 +20,7 @@ public class DriveWithJoysticks extends CommandBase {
 	// Called repeatedly when this Command is scheduled to run
 	public void execute()
 	{
-		CommandBase.driveTrain.tankDrive(
-				oi.getLeftController(),
-				oi.getRightController(),
-				baseDirection);
+		CommandBase.driveTrain.tankDrive(oi.getLeftController(), oi.getRightController(), baseDirection);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

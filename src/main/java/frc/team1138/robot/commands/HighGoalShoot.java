@@ -3,17 +3,19 @@ package frc.team1138.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.team1138.robot.CommandBase;
 
-public class HighGoalShoot extends CommandGroup {
-	public HighGoalShoot() {
+public class HighGoalShoot extends CommandGroup
+{
+	public HighGoalShoot()
+	{
 		// Add Commands here:
 		// e.g. AddSequential(new Command1());
-		//      AddSequential(new Command2());
+		// AddSequential(new Command2());
 		// these will run in order.
 
 		// To run multiple commands at the same time,
 		// use AddParallel()
 		// e.g. AddParallel(new Command1());
-		//      AddSequential(new Command2());
+		// AddSequential(new Command2());
 		// Command1 and Command2 will run in parallel.
 
 		// A command group will require all of the subsystems that each member
@@ -24,8 +26,8 @@ public class HighGoalShoot extends CommandGroup {
 		requires(CommandBase.shooter);
 
 		addSequential(new FlywheelForward());
-//		addSequential(new CheckFlywheels());
-//		addSequntial(new CheckPressure());
+		// addSequential(new CheckFlywheels());
+		// addSequntial(new CheckPressure());
 		addSequential(new KickBall());
 		addSequential(new FlywheelStop());
 

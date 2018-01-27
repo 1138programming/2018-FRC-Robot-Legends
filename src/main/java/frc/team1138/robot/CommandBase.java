@@ -8,7 +8,9 @@ import frc.team1138.robot.subsystems.Shooter;
 import frc.team1138.robot.subsystems.Collector;
 
 import frc.team1138.robot.OI;
-public abstract class CommandBase extends Command {
+
+public abstract class CommandBase extends Command
+{
 	// Create a single static instance of all of your subsystems. The following
 	// line should be repeated for each subsystem in the project.
 	public static DriveTrain driveTrain = new DriveTrain();

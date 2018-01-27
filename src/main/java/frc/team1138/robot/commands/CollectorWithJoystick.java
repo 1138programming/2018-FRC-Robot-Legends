@@ -2,10 +2,13 @@ package frc.team1138.robot.commands;
 
 import frc.team1138.robot.CommandBase;
 
-public class CollectorWithJoystick extends CommandBase {
-	public CollectorWithJoystick() {
+public class CollectorWithJoystick extends CommandBase
+{
+	public CollectorWithJoystick()
+	{
 		requires(CommandBase.collector);
 	}
+
 	// Called just before this Command runs the first time
 	public void initialize()
 	{

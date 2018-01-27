@@ -4,16 +4,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.AnalogInput;
 
-public class Pneumatics extends Subsystem {
+public class Pneumatics extends Subsystem
+{
 	private Compressor pCompressor;
 	private AnalogInput pressureSensor;
 
-	public Pneumatics() {
+	public Pneumatics()
+	{
 		pCompressor = new Compressor(0);
 		pressureSensor = new AnalogInput(0);
 	}
-	
-	public void initDefaultCommand() {
+
+	public void initDefaultCommand()
+	{
 		pCompressor.start();
 	}
 

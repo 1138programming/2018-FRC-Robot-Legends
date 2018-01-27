@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-public class DriveTrain extends Subsystem {	
+public class DriveTrain extends Subsystem
+{
 	private TalonSRX rightTopMotor;
 	private TalonSRX rightRearMotor;
 	private TalonSRX leftRearMotor;
@@ -18,7 +19,7 @@ public class DriveTrain extends Subsystem {
 	private TalonSRX rightFrontMotor;
 	private TalonSRX leftFrontMotor;
 	private DoubleSolenoid shiftSolenoid;
-	
+
 	public double ticksPerInch;
 	public final double KRamp = 6.0;
 	public final double KDeadZoneLimit = 0.1;
@@ -27,20 +28,21 @@ public class DriveTrain extends Subsystem {
 	public final double KWheelRadius = 4.0;
 	public final double KPI = 3.14;
 	public final double KTicksPerRev = 256;
-	
-	public DriveTrain() {
-		rightFrontMotor= new TalonSRX(KRightMaster);
+
+	public DriveTrain()
+	{
+		rightFrontMotor = new TalonSRX(KRightMaster);
 
 		rightTopMotor = new TalonSRX(1);
 
 		rightRearMotor = new TalonSRX(3);
 		rightRearMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 
-		//rightFrontMotor.setSafetyEnabled(false);
-		//rightFrontMotor.setVoltageRampRate(KRamp); - Removed
+		// rightFrontMotor.setSafetyEnabled(false);
+		// rightFrontMotor.setVoltageRampRate(KRamp); - Removed
 
 		rightTopMotor.set(ControlMode.Follower, KRightMaster); // Set the top motor as a slave
-		rightTopMotor.setSensorPhase(true);	//invert the top motor relative to the master
+		rightTopMotor.setSensorPhase(true); // invert the top motor relative to the master
 		rightRearMotor.set(ControlMode.Follower, KRightMaster); // Set the rear motor as a slave
 
 		leftRearMotor = new TalonSRX(4);
@@ -49,15 +51,15 @@ public class DriveTrain extends Subsystem {
 
 		leftFrontMotor = new TalonSRX(KLeftMaster);
 
-		//leftFrontMotor.setSafetyEnabled(false);
-		//leftFrontMotor.setVoltageRampRate(KRamp); - Removed
-		rightTopMotor.setInverted(true); 
+		// leftFrontMotor.setSafetyEnabled(false);
+		// leftFrontMotor.setVoltageRampRate(KRamp); - Removed
+		rightTopMotor.setInverted(true);
 		rightRearMotor.setInverted(true);
-		
+
 		leftFrontMotor.setInverted(true);
 		leftRearMotor.setInverted(true);
 		leftTopMotor.setInverted(true);
-		
+
 		leftFrontMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 
 		shiftSolenoid = new DoubleSolenoid(0, 1);
@@ -66,42 +68,43 @@ public class DriveTrain extends Subsystem {
 		leftTopMotor.setSensorPhase(true);
 		leftRearMotor.set(ControlMode.Follower, KLeftMaster);
 
-		ticksPerInch = KTicksPerRev/(KWheelRadius * KPI) ;
+		ticksPerInch = KTicksPerRev / (KWheelRadius * KPI);
 	}
-	
-	public void initDefaultCommand() {
+
+	public void initDefaultCommand()
+	{
 		setDefaultCommand(new DriveWithJoysticks());
 	}
-	
+
 	/**********************************************************************************
-	 * The drive will take the values for the left and right Logitech joystick axes.  If
-	 * the drive base is in reverse mode, it will reverse them.  We allow for a small deadzone
+	 * The drive will take the values for the left and right Logitech joystick axes.
+	 * If the drive base is in reverse mode, it will reverse them. We allow for a
+	 * small deadzone
 	 */
-	 public void tankDrive(double left, double right, double direction)
-	 {
-	   	left *= direction;
-	   	if(left > KDeadZoneLimit || left < -KDeadZoneLimit)
-	   	{
-	   		leftFrontMotor.set(ControlMode.PercentOutput, left);
-	   	}
-	   	else
-	   	{
-	   		leftFrontMotor.set(ControlMode.PercentOutput, 0);
-	   	}
+	public void tankDrive(double left, double right, double direction)
+	{
+		left *= direction;
+		if (left > KDeadZoneLimit || left < -KDeadZoneLimit)
+		{
+			leftFrontMotor.set(ControlMode.PercentOutput, left);
+		}
+		else
+		{
+			leftFrontMotor.set(ControlMode.PercentOutput, 0);
+		}
 
-	   	right *= direction;
-	   	if(right > KDeadZoneLimit || right < -KDeadZoneLimit)
-	   	{
-	   		rightFrontMotor.set(ControlMode.PercentOutput, right);
-	   	}
-	   	 else
-	   	{
-	   	    rightFrontMotor.set(ControlMode.PercentOutput, 0);
-	   	}
-	   	//SmartDashboard.putNumber("Left Motor", (double) left);
-	   	//SmartDashboard.putNumber("RightMOtor", (double) right);
+		right *= direction;
+		if (right > KDeadZoneLimit || right < -KDeadZoneLimit)
+		{
+			rightFrontMotor.set(ControlMode.PercentOutput, right);
+		}
+		else
+		{
+			rightFrontMotor.set(ControlMode.PercentOutput, 0);
+		}
+		// SmartDashboard.putNumber("Left Motor", (double) left);
+		// SmartDashboard.putNumber("RightMOtor", (double) right);
 	}
-
 
 	public void stopBase()
 	{
@@ -119,7 +122,8 @@ public class DriveTrain extends Subsystem {
 		shiftSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 
-	 /*If the shifter solenoid is off or in high gear - switch to low gear (forward)
+	/*
+	 * If the shifter solenoid is off or in high gear - switch to low gear (forward)
 	 * If it is in low gear - switch to high gear (reverse)
 	 */
 	public void toggleShift()
@@ -138,7 +142,7 @@ public class DriveTrain extends Subsystem {
 	{
 		double encoder = 0;
 		leftFrontMotor.getSensorCollection().setQuadraturePosition(0, 10);
-		while(encoder < distance)
+		while (encoder < distance)
 		{
 			rightFrontMotor.set(ControlMode.PercentOutput, speed);
 			leftFrontMotor.set(ControlMode.PercentOutput, speed);
@@ -150,7 +154,7 @@ public class DriveTrain extends Subsystem {
 	{
 		double encoder = 0;
 		leftFrontMotor.getSensorCollection().setQuadraturePosition(0, 10);
-		while(encoder > distance)
+		while (encoder > distance)
 		{
 			rightFrontMotor.set(ControlMode.PercentOutput, -speed);
 			leftFrontMotor.set(ControlMode.PercentOutput, -speed);

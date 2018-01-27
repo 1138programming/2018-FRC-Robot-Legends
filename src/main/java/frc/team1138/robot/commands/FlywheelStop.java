@@ -2,9 +2,12 @@ package frc.team1138.robot.commands;
 
 import frc.team1138.robot.CommandBase;
 
-public class FlywheelStop extends CommandBase {
-	public FlywheelStop() {
+public class FlywheelStop extends CommandBase
+{
+	public FlywheelStop()
+	{
 	}
+
 	// Called just before this Command runs the first time
 	public void initialize()
 	{

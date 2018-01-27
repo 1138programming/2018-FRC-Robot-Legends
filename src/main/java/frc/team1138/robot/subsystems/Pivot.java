@@ -11,24 +11,27 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-public class Pivot extends Subsystem {
+public class Pivot extends Subsystem
+{
 	private TalonSRX pivotMotor;
 	private DigitalInput pivotUpperLimit, pivotLowerLimit;
 
-	public Pivot() {
+	public Pivot()
+	{
 		pivotMotor = new TalonSRX(12);
-		//INFO Pivot lower limit switch - DIO 0
-		//INFO Pivot upper limit switch - DIO 1
+		// INFO Pivot lower limit switch - DIO 0
+		// INFO Pivot upper limit switch - DIO 1
 		pivotLowerLimit = new DigitalInput(0);
 		pivotUpperLimit = new DigitalInput(1);
 		pivotMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		pivotMotor.setInverted(true);
 	}
-	
-	public void initDefaultCommand() {
+
+	public void initDefaultCommand()
+	{
 		setDefaultCommand(new PivotWithJoystick());
 	}
-	
+
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public void pivotRunToLimit(double direction)
@@ -50,9 +53,9 @@ public class Pivot extends Subsystem {
 		{
 			stopPivot();
 		}
-		if(pivotIsAtUpperLimit())
+		if (pivotIsAtUpperLimit())
 		{
-			pivotMotor.getSensorCollection().setQuadraturePosition(0, 10);	//The encoder 0 is at the high position
+			pivotMotor.getSensorCollection().setQuadraturePosition(0, 10); // The encoder 0 is at the high position
 		}
 	}
 

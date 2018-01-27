@@ -6,7 +6,8 @@ package frc.team1138.robot;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-public class RobotMap {	
+public class RobotMap
+{
 	public static final double KDeadZoneLimit = 0.1;
 	public static final double KPivotSpeed = 0.2;
 }
