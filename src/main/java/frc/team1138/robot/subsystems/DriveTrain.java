@@ -24,6 +24,7 @@ public class DriveTrain extends Subsystem
 	public final double KRamp = 6.0;
 	public final double KDeadZoneLimit = 0.1;
 	public final int KLeftMaster = 6;
+	public final double KHalfSpeed = 0.5;
 	public final int KRightMaster = 2;
 	public final double KWheelRadius = 4.0;
 	public final double KPI = 3.14;
@@ -86,7 +87,7 @@ public class DriveTrain extends Subsystem
 		left *= direction;
 		if (left > KDeadZoneLimit || left < -KDeadZoneLimit)
 		{
-			leftFrontMotor.set(ControlMode.PercentOutput, left);
+			leftFrontMotor.set(ControlMode.PercentOutput, left*KHalfSpeed);
 		}
 		else
 		{
@@ -96,7 +97,7 @@ public class DriveTrain extends Subsystem
 		right *= direction;
 		if (right > KDeadZoneLimit || right < -KDeadZoneLimit)
 		{
-			rightFrontMotor.set(ControlMode.PercentOutput, right);
+			rightFrontMotor.set(ControlMode.PercentOutput, right*KHalfSpeed);
 		}
 		else
 		{

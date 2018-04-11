@@ -18,7 +18,7 @@ import frc.team1138.robot.commands.FlywheelReverse;
 public class OI
 {
 	// 3 Joysticks - 2 Logitech and 1 xbox
-	private Joystick leftController, rightController, xBoxController;
+	private Joystick /*leftController, rightController,*/ logitechController, xBoxController;
 
 	// Logitech Buttons
 	public JoystickButton shiftButton, reverseDriveButton;
@@ -35,13 +35,14 @@ public class OI
 	{
 		// Logitech and xbox controllers.
 		// INFO Left Joystick is 0, Right is 1, XBox is 2
-		leftController = new Joystick(0);
-		rightController = new Joystick(1);
-		xBoxController = new Joystick(2);
+		logitechController = new Joystick(0);
+//		leftController = new Joystick(0);
+//		rightController = new Joystick(1);
+		xBoxController = new Joystick(1);
 
 		// Logitech buttons
-		shiftButton = new JoystickButton(leftController, 1);
-		reverseDriveButton = new JoystickButton(rightController, 1);
+		shiftButton = new JoystickButton(logitechController, 8);
+		reverseDriveButton = new JoystickButton(logitechController, 7);
 
 		/******
 		 * XBox Button definitions The ones that are commented out, we aren't using
@@ -66,12 +67,12 @@ public class OI
 
 	public double getRightController()
 	{ // Right controller is right side drive
-		return rightController.getY();
+		return logitechController.getThrottle();
 	}
 
 	public double getLeftController()
 	{ // Left controller is left side drive
-		return leftController.getY();
+		return logitechController.getY();
 	}
 
 	public boolean getLeftTrigger()

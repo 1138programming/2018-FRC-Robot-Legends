@@ -8,6 +8,6 @@ package frc.team1138.robot;
  */
 public class RobotMap
 {
-	public static final double KDeadZoneLimit = 0.1;
+	public static final double KDeadZoneLimit = 0.2;
 	public static final double KPivotSpeed = 0.2;
 }

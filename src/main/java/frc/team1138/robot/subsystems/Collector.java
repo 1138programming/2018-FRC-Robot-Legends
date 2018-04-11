@@ -54,16 +54,16 @@ public class Collector extends Subsystem
 
 	public void collectorRunToLimitSwitch(double direction)
 	{
-		SmartDashboard.putNumber("Left Collector Encoder", collectorLeftEncoderPosition());
-		SmartDashboard.putNumber("Left Collector Encoder", collectorRightEncoderPosition());
-
-		if (direction >= RobotMap.KDeadZoneLimit && collectorIsAtUpperLimit() == false)// moving up
+//		SmartDashboard.putNumber("Left Collector Encoder", collectorLeftEncoderPosition());
+//		SmartDashboard.putNumber("Left Collector Encoder", collectorRightEncoderPosition());
+//
+		if (direction >= RobotMap.KDeadZoneLimit /*&& collectorIsAtUpperLimit() == false*/)// moving up
 		{
 			leftCollectorMotor.set(ControlMode.PercentOutput, KCollectorSpeed);
 			rightCollectorMotor.set(ControlMode.PercentOutput, -KCollectorSpeed);
 
 		}
-		else if (direction <= -RobotMap.KDeadZoneLimit && collectorIsAtLowerLimit() == false)// moving down
+		else if (direction <= -RobotMap.KDeadZoneLimit /*&& collectorIsAtLowerLimit() == false*/)// moving down
 		{
 			leftCollectorMotor.set(ControlMode.PercentOutput, -KCollectorSpeed);
 			rightCollectorMotor.set(ControlMode.PercentOutput, KCollectorSpeed);
@@ -73,10 +73,10 @@ public class Collector extends Subsystem
 			leftCollectorMotor.set(ControlMode.PercentOutput, 0);
 			rightCollectorMotor.set(ControlMode.PercentOutput, 0);
 		}
-		if (collectorIsAtUpperLimit())
-		{
-			leftCollectorMotor.getSensorCollection().setQuadraturePosition(0, 10);
-		}
+//		if (collectorIsAtUpperLimit())
+//		{
+//			leftCollectorMotor.getSensorCollection().setQuadraturePosition(0, 10);
+//		}
 
 	}
 
